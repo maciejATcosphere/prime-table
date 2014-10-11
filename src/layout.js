@@ -10,63 +10,68 @@ define([
     'keyboard'
 ], function ($, _, parser, engine, primes, table, arrow, kb) {
 
-    // FIXME move to parseVIew
-    var $input = $('#app-input'),
-        arrowView = new arrow.ArrowView($('#app-output'));
+    var App = function ($inputEl, $outputEl) {
+        this.arrowView = new arrow.ArrowView($('#app-output'));
+        this.primeEngine = new engine.Engine(primes);
 
-    $input.on('keydown', function (event) {
+        // main + initialize
+        this.visiblePrimesIndx = parser.parse($inputEl.val()) || [];
+        this.visiblePrimes = this.primeEngine.initialize(
+            this.visiblePrimesIndx) || [];
 
-        var $this = $(this),
-            keyCode = event.which;
+        this.tableView = new table.TableView(this.visiblePrimes, $outputEl);
 
-        if (kb.isEnter(keyCode)) {
-            event.stopPropagation();
-            visiblePrimesIndx = parser.parse($this.val());
+        // events
+        var that = this;
+        $inputEl.on('keydown', function (event) {
 
-            visiblePrimes = _.map(visiblePrimesIndx, function (idx) {
+            var $this = $(this),
+                keyCode = event.which;
+
+            if (kb.isEnter(keyCode)) {
+                event.stopPropagation();
+                that.visiblePrimesIndx = parser.parse($this.val());
+
+                that.visiblePrimes = _.map(that.visiblePrimesIndx, function (idx) {
+                    return primes[idx];
+                });
+
+console.log(that.visiblePrimes);
+
+                that.tableView = new table.TableView(that.visiblePrimes, $outputEl);
+                // that.tableView.update(that.visiblePrimes);
+            }
+        });
+
+
+        $('body').on('keydown', function (event) {
+            // FIXME use jquery hotkeys or something else to make CTRL + operations
+
+            var keyCode = event.which;
+
+            if (kb.isLeft(keyCode) || kb.isUp(keyCode)) {
+                // FIXME: get rid of duplicates
+                that.arrowView.show('top-left');
+                that.visiblePrimesIndx.pop();
+                that.visiblePrimesIndx.unshift(
+                    _.first(that.visiblePrimesIndx) - 1);
+                event.preventDefault();
+            } else if (kb.isDown(keyCode) || kb.isRight(keyCode)) {
+
+                that.arrowView.show('bottom-right');
+                that.visiblePrimesIndx.shift();
+                that.visiblePrimesIndx.push(
+                    _.last(that.visiblePrimesIndx) + 1);
+                event.preventDefault();
+            }
+
+            that.visiblePrimes = _.map(that.visiblePrimesIndx, function (idx) {
                 return primes[idx];
             });
 
-            tableView.update(visiblePrimes.slice(0, 10));
-        }
-    });
-
-    var visiblePrimes = [], visiblePrimesIndx = [];
-
-    // FIXME moev to tableView
-    $('body').on('keydown', function (event) {
-        // FIXME use jquery hotkeys or something else to make CTRL + operations
-
-        var keyCode = event.which;
-
-
-        if (kb.isLeft(keyCode) || kb.isUp(keyCode)) {
-            // FIXME: get rid of duplicates
-            event.preventDefault();
-
-            arrowView.show('top-left');
-            visiblePrimesIndx.pop();
-            visiblePrimesIndx.unshift(_.first(visiblePrimesIndx) - 1);
-        } else if (kb.isDown(keyCode) || kb.isRight(keyCode)) {
-
-            arrowView.show('bottom-right');
-            visiblePrimesIndx.shift();
-            visiblePrimesIndx.push(_.last(visiblePrimesIndx) + 1);
-            event.preventDefault();
-        }
-
-        visiblePrimes = _.map(visiblePrimesIndx, function (idx) {
-            return primes[idx];
+            that.tableView.update(that.visiblePrimes);
         });
+    };
 
-console.log('tableView', tableView);
-console.log('indices', visiblePrimesIndx, 'primes', visiblePrimes.slice(0, 10));
-        tableView.update(visiblePrimes.slice(0, 10));
-    });
-
-    // main
-    visiblePrimesIndx = parser.parse($input.val());
-    var primeEngine = new engine.Engine(primes);
-    var tableView = new table.TableView(
-        primeEngine.initialize(visiblePrimesIndx), $('#app-output'));
+    new App($('#app-input'), $('#app-output'));
 });

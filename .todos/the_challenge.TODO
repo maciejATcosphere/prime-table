@@ -6,13 +6,12 @@ Tasks:
 ✔ consider vectorized calculations @done (14-10-10 23:07)
 ✔ create prime number sequence generator @done (14-10-11 18:56)
 ✔ let the table always only show the visible part @done (14-10-11 21:56)
+✔ add fading arrows indicating arrow direction @done (14-10-11 23:47)
 ☐ get rid of foundation and style the app nicely?
-☐ add fading arrows indicating arrow direction
 ☐ use jquery hotkeys or something similar
 ☐ let the update be driven by users machines capability to calculate next prime
-
+☐ make sure that parser returns indices and not prime number!
 ☐ use logger that could report about excptional needs of the users
-
 ☐ document functions nicely
 
 ☐ update gitignore
