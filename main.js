@@ -3,8 +3,8 @@ requirejs.config({
     baseUrl: '',
 
     paths: {
-        'jquery': '../lib/jquery.min',
-        'underscore': '../lib/underscore.min',
+        'jquery': 'lib/jquery.min',
+        'underscore': 'lib/underscore.min',
 
         'engine': 'src/logic/engine',
         'parser': 'src/logic/parser',
