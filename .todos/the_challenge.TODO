@@ -8,12 +8,18 @@ Tasks:
 ✔ let the table always only show the visible part @done (14-10-11 21:56)
 ✔ add fading arrows indicating arrow direction @done (14-10-11 23:47)
 ✔ update gitignore @done (14-10-12 00:00)
-☐ host on github pages
+✔ host on github pages @done (14-10-12 00:08)
+✔ use jquery hotkeys or something similar @done (14-10-12 00:23)
+✔ make sure that parser returns indices and not prime number! @done (14-10-12 00:29)
 ☐ get rid of foundation and style the app nicely?
-☐ use jquery hotkeys or something similar
+☐ make sure that the update uses the engine!!! (use there exceptions to handle user messages display)
+☐ handle parse errors etc. and inform user about them
 ☐ let the update be driven by users machines capability to calculate next prime
-☐ make sure that parser returns indices and not prime number!
-☐ use logger that could report about excptional needs of the users
+
+☐ make sure that arrows are stopped correctly
 ☐ document functions nicely
 ☐ update README
-☐ use optional workers for hard calculations
+☐ perform final manual tests
+
+Future:
+☐ use optional workers for calculations

@@ -31,8 +31,8 @@ define(['underscore'], function (_) {
 
                     if (match) {
                         return _.range(
-                            parseInt(match[1]),
-                            parseInt(match[1]) + MAX_LENGTH);
+                            parseInt(match[1]) - 1,
+                            parseInt(match[1]) + MAX_LENGTH - 1);
                     }
                 }
 
@@ -40,11 +40,11 @@ define(['underscore'], function (_) {
                 match = rangePattern.exec(token);
                 if (match) {
                     return _.range(
-                        parseInt(match[1]),
-                        parseInt(match[2]) + 1);
+                        parseInt(match[1]) - 1,
+                        parseInt(match[2]));
                 }
 
-                return parseInt(token);
+                return parseInt(token) - 1;
             })
         ).sort();
 

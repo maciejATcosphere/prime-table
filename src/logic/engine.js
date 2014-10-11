@@ -84,7 +84,6 @@ define(['underscore', 'primes'], function (_, primes) {
      * computational complexity is negligible.
      */
     Engine.prototype.previousPrime = function (rightPrimeIndex) {
-        // just retrieval from the cache
         return this.cache[rightPrimeIndex - 1];
     };
 

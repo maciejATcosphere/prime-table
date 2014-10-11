@@ -6,14 +6,19 @@ define(['underscore', 'parser'], function (_, parser) {
         it('deals correctly with simple input', function () {
 
             var testCases = [
-                {input: '20', expected: _.range(20, 30)},
-                {input: '20/30', expected: [20].concat(_.range(30, 39))},
-                {input: '30/20', expected: [20].concat(_.range(30, 39))},
-                {input: '20/30/41', expected: [20, 30].concat(_.range(41, 49))},
-                {input: '30/20-24', expected: _.range(20, 25).concat(_.range(30, 35))},
-                {input: '  30 / 20 -  24', expected: _.range(20, 25).concat(_.range(30, 35))},
-                {input: '18+', expected: _.range(18, 38)},
-                {input: '20/34+', expected: [20].concat(_.range(34, 53))},
+                {input: '20', expected: _.range(19, 29)},
+                {input: '20/30', expected: [19].concat(_.range(29, 38))},
+                {input: '30/20', expected: [19].concat(_.range(29, 38))},
+                {
+                    input: '20/30/41',
+                    expected: [19, 29].concat(_.range(40, 48))
+                },
+                {
+                    input: '30/20-24',
+                    expected: _.range(19, 24).concat(_.range(29, 34))
+                },
+                {input: '18+', expected: _.range(17, 37)},
+                {input: '20/34+', expected: [19].concat(_.range(33, 52))},
             ];
 
             testCases.forEach(function (testCase) {
@@ -27,10 +32,10 @@ define(['underscore', 'parser'], function (_, parser) {
         it('deals correctly with duplicates', function () {
 
             var testCases = [
-                {input: '20/20', expected: _.range(20, 30)},
-                {input: '30/20/20', expected: [20].concat(_.range(30, 39))},
-                {input: '20/20-20', expected: _.range(20, 30)},
-                {input: '20/20/20+', expected: _.range(20, 40)},
+                {input: '20/20', expected: _.range(19, 29)},
+                {input: '30/20/20', expected: [19].concat(_.range(29, 38))},
+                {input: '20/20-20', expected: _.range(19, 29)},
+                {input: '20/20/20+', expected: _.range(19, 39)},
             ];
 
             testCases.forEach(function (testCase) {
@@ -44,9 +49,15 @@ define(['underscore', 'parser'], function (_, parser) {
         it('deals correctly with extra white characters input', function () {
 
             var testCases = [
-                {input: '   20  ', expected: _.range(20, 30)},
-                {input: '  20  /  30/41', expected: [20, 30].concat(_.range(41, 49))},
-                {input: '  30 / 20 -  24', expected: _.range(20, 25).concat(_.range(30, 35))},
+                {input: '   20  ', expected: _.range(19, 29)},
+                {
+                        input: '  20  /  30/41',
+                        expected: [19, 29].concat(_.range(40, 48))
+                },
+                {
+                    input: '  30 / 20 -  24',
+                    expected: _.range(19, 24).concat(_.range(29, 34))
+                },
             ];
 
             testCases.forEach(function (testCase) {
