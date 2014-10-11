@@ -9,6 +9,7 @@ define(['underscore'], function (_) {
 
 
     exports.parse = function (rawInput) {
+
         var input = removeSpace(rawInput),
             len,
             parsed = [];

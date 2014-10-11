@@ -4,10 +4,18 @@ Tasks:
 ✔ create user input parser @done (14-10-10 22:04)
 ✔ create user input validator @done (14-10-10 22:40)
 ✔ consider vectorized calculations @done (14-10-10 23:07)
-☐ let the table always only show the visible part
-☐ create prime number sequence generator
+✔ create prime number sequence generator @done (14-10-11 18:56)
+✔ let the table always only show the visible part @done (14-10-11 21:56)
+☐ get rid of foundation and style the app nicely?
+☐ add fading arrows indicating arrow direction
+☐ use jquery hotkeys or something similar
+☐ let the update be driven by users machines capability to calculate next prime
+
 ☐ use logger that could report about excptional needs of the users
+
 ☐ document functions nicely
 
-☐ get rid of foundation and style the app nicely
+☐ update gitignore
+☐ host on github pages
+
 ☐ use optional workers for hard calculations

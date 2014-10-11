@@ -1,6 +1,4 @@
 
-console.log('test');
-
 requirejs.config({
     baseUrl: '',
 
@@ -8,10 +6,13 @@ requirejs.config({
         'jquery': '../lib/jquery.min',
         'underscore': '../lib/underscore.min',
 
-        'engine': 'src/engine',
-        'parser': 'src/parser',
+        'engine': 'src/logic/engine',
+        'parser': 'src/logic/parser',
+        'primes': 'src/logic/primes',
+        'keyboard': 'src/utils/keyboard',
+        'table': 'src/views/table',
+        'arrow': 'src/views/arrow',
         'layout': 'src/layout',
-        'primes': 'src/primes',
     },
 
     shim: {
@@ -20,5 +21,5 @@ requirejs.config({
         },
     },
 
-    deps: ['engine', 'layout'],
+    deps: ['layout'],
 });

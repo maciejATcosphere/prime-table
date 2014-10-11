@@ -1,4 +1,0 @@
-
-define(['primes'], function (primes) {
-
-});

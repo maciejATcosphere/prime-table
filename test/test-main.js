@@ -15,6 +15,14 @@ requirejs.config({
     paths: {
         'jquery': '../lib/jquery.min',
         'underscore': '../lib/underscore.min',
+
+        'engine': 'logic/engine',
+        'parser': 'logic/parser',
+        'primes': 'logic/primes',
+        'layout': 'layout',
+        'table': 'views/table',
+        'arrow': 'src/views/arrow',
+        'keyboard': 'utils/keyboard',
     },
 
     shim: {
