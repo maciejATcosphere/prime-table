@@ -4,7 +4,7 @@ var express = require("express")
 
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + '/src/index.html')
+    res.sendFile(__dirname + '/index.html')
 });
 
 
