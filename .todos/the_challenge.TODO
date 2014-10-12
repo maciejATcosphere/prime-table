@@ -14,13 +14,10 @@ Tasks:
 ✔ make sure that the update uses the engine!!! (use there exceptions to handle user messages display) @done (14-10-12 10:41)
 ✔ make sure that arrows are stopped correctly @done (14-10-12 10:45)
 ✔ handle parse errors etc. and inform user about them (for example 30-20 add extra tests) @done (14-10-12 11:43)
-☐ let the update be driven by users machines capability to calculate next prime
-☐ get rid of foundation and style the app nicely, cleanup css
-
-☐ document functions nicely
-☐ update README
-☐ perform final manual tests
+✔ get rid of foundation and style the app nicely, cleanup css @done (14-10-12 15:19)
+✔ update README @done (14-10-12 15:19)
+✔ let the update be driven by users machines capability to calculate next prime @done (14-10-12 16:05)
+✔ document functions nicely @done (14-10-12 16:05)
+✔ perform final manual tests @done (14-10-12 16:05)
 ☐ finally update master branch
 
-Future:
-☐ use optional workers for calculations

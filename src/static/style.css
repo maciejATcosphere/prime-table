@@ -16,14 +16,25 @@ td.active-cell {
     margin: 50px 0 0 50px;
 }
 
+
+body {
+    background-color: #272822 !important;
+}
+
 .container {
     margin: 20px 0 0 20px;
+}
+
+.loader {
+    display: none;
+    margin: 0 10px;
 }
 
 input {
     width: 300px;
     margin: 0 5px;
 }
+
 .button {
     margin-bottom: 0px !important;
 }
@@ -55,31 +66,13 @@ input {
     font-size: 24px;
     padding: 0 2px;
 }
+
 .display {
     width: 800px;
 }
-table {border-spacing: 0; }
 
-body {
-    background-color: #272822 !important;
-}
-
-/*table a:link {
-    color: #666;
-    font-weight: bold;
-    text-decoration:none;
-}
-table a:visited {
-    color: #999999;
-    font-weight:bold;
-    text-decoration:none;
-}
-table a:active,
-table a:hover {
-    color: #bd5a35;
-    text-decoration:underline;
-}*/
 table {
+    border-spacing: 0;
     font-family:Arial, Helvetica, sans-serif;
     color:#666;
     font-size:12px;
@@ -96,6 +89,7 @@ table {
     -webkit-box-shadow: 0 1px 2px #d1d1d1;
     box-shadow: 0 1px 2px #d1d1d1;
 }
+
 table th, table td.header-cell {
     padding:21px 25px 22px 25px;
     border-top:1px solid #fafafa;
@@ -105,17 +99,20 @@ table th, table td.header-cell {
     background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
     background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
 }
+
 table th:first-child,
 table td.header-cell:first-child {
     text-align: left;
     padding-left:20px;
 }
+
 table tr:first-child th:first-child,
 table tr:first-child td.header-cell:first-child {
     -moz-border-radius-topleft:3px;
     -webkit-border-top-left-radius:3px;
     border-top-left-radius:3px;
 }
+
 table tr:first-child th:last-child,
 table tr:first-child td.header-cell:last-child {
     -moz-border-radius-topright:3px;
@@ -159,8 +156,9 @@ table tr:last-child td:last-child{
     -webkit-border-bottom-right-radius:3px;
     border-bottom-right-radius:3px;
 }
-table tr:hover td{
+/*table tr:hover td{
     background: #f2f2f2;
     background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
     background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);
 }
+*/

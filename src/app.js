@@ -34,24 +34,18 @@ define([
 
 
     App.prototype.initialize = function () {
-        // events
         var that = this;
-
         this.$inputEl.on('keydown', function (event) {
             var $this = $(this),
                 keyCode = event.which;
 
             that.errorView.observe(function () {
                 if (kb.isEnter(keyCode)) {
+
                     event.stopPropagation();
                     that.visiblePrimesIndx = parser.parse($this.val());
-
-                    that.visiblePrimes = _.map(
-                        that.visiblePrimesIndx, function (idx) {
-                            return primes[idx];
-                    });
-
-
+                    that.visiblePrimes = that.primeEngine.initialize(
+                        that.visiblePrimesIndx) || [];
                     that.tableView = new table.TableView(
                         that.visiblePrimes, that.$outputEl);
                 }
@@ -63,38 +57,44 @@ define([
             var keyCode = event.which;
 
             that.errorView.observe(function () {
-                // FIXME: clean up the code
                 if (event.ctrlKey &&
                     (kb.isLeft(keyCode) || kb.isUp(keyCode))) {
 
-                    if (_.first(that.visiblePrimesIndx) <= 1) {
+                    var firstIdx = _.first(that.visiblePrimesIndx);
+
+                    if (firstIdx <= 1) {
                         throw new exception.LowerBoundReachedException();
                     }
 
                     that.arrowView.show('top-left');
-                    that.visiblePrimesIndx.pop();
-                    that.visiblePrimesIndx.unshift(
-                        _.first(that.visiblePrimesIndx) - 1);
 
                     that.visiblePrimes.pop();
                     that.visiblePrimes.unshift(
-                        that.primeEngine.previousPrime(
-                            _.first(that.visiblePrimesIndx)));
+                        that.primeEngine.previousPrime(firstIdx));
+
+                    that.visiblePrimesIndx.pop();
+                    that.visiblePrimesIndx.unshift(firstIdx - 1);
 
                 } else if (event.ctrlKey &&
                     (kb.isDown(keyCode) || kb.isRight(keyCode))) {
 
+                    var lastIdx = _.last(that.visiblePrimesIndx);
+
+                    if (that.primeEngine.isCacheTooBig() &&
+                        lastIdx + 1 >= that.primeEngine.cache.length) {
+                        throw new exception.CacheTooBigException(
+                            that.primeEngine.maxCacheSize);
+                    }
+
                     that.arrowView.show('bottom-right');
-                    that.visiblePrimesIndx.shift();
-                    that.visiblePrimesIndx.push(
-                        _.last(that.visiblePrimesIndx) + 1);
 
                     that.visiblePrimes.shift();
                     that.visiblePrimes.push(
-                        that.primeEngine.nextPrime(
-                            _.last(that.visiblePrimesIndx)));
+                        that.primeEngine.nextPrime(lastIdx));
 
-                }
+                    that.visiblePrimesIndx.shift();
+                    that.visiblePrimesIndx.push(lastIdx + 1);
+               }
 
                 that.tableView.update(that.visiblePrimes);
 

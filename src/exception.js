@@ -19,18 +19,19 @@ define([], function () {
     LowerBoundReachedException.prototype.constructor = LowerBoundReachedException;
 
 
-    var SlowUpdateException = function (message) {
-        this.name = "SlowUpdateException";
-        this.message = message || (
-            "slow calcluation detected");
+    var CacheTooBigException = function (maxCacheSize) {
+        this.name = "CacheTooBigException";
+        this.message = (
+            "cache size exceeded: " + maxCacheSize + "MB. " +
+            "Further calculations are not possible");
     }
-    SlowUpdateException.prototype = new Error();
-    SlowUpdateException.prototype.constructor = SlowUpdateException
+    CacheTooBigException.prototype = new Error();
+    CacheTooBigException.prototype.constructor = CacheTooBigException
 
 
     return {
         InvalidInputException: InvalidInputException,
         LowerBoundReachedException: LowerBoundReachedException,
-        SlowUpdateException: SlowUpdateException,
+        CacheTooBigException: CacheTooBigException,
     }
 });

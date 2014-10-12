@@ -154,6 +154,40 @@ define(['underscore', 'engine', 'primes'], function(_, e, primes) {
             });
         });
 
+
+        it('says if cache is too big', function () {
+            var testCases = [
+                {cache: [], expected: false},
+                {
+                    cache: [1],
+                    maxCacheSize: 7 / Math.pow(1024, 2),
+                    expected: true,
+                },
+                {
+                    cache: [1],
+                    maxCacheSize: 8 / Math.pow(1024, 2),
+                    expected: false,
+                },
+                {
+                    cache: new Array(10),
+                    maxCacheSize: 80 / Math.pow(1024, 2),
+                    expected: false,
+                },
+                {
+                    cache: new Array(10),
+                    maxCacheSize: 79 / Math.pow(1024, 2),
+                    expected: true,
+                },
+            ]
+
+            testCases.forEach(function (testCase) {
+                var engine = new e.Engine(
+                    testCase.cache, testCase.maxCacheSize);
+                expect(
+                    engine.isCacheTooBig()
+                ).toEqual(testCase.expected);
+            });
+        });
     });
 
 });

@@ -3,8 +3,9 @@ define(['underscore', 'primes'], function (_, primes) {
     var exports = {};
 
 
-    var Engine = function (primes) {
+    var Engine = function (primes, maxCacheSize) {
         this.cache = primes || [2, 3];
+        this.maxCacheSize = maxCacheSize || 1.0;
     };
 
 
@@ -23,7 +24,6 @@ define(['underscore', 'primes'], function (_, primes) {
 
             candidate += 2;
         }
-
 
         return _.map(indices, function (index) {
             return this.cache[index];
@@ -70,7 +70,6 @@ define(['underscore', 'primes'], function (_, primes) {
         while (!this.isPrime(candidate)) { candidate += 2; }
 
         this.cache.push(candidate);
-
         return candidate;
     };
 
@@ -85,6 +84,14 @@ define(['underscore', 'primes'], function (_, primes) {
      */
     Engine.prototype.previousPrime = function (rightPrimeIndex) {
         return this.cache[rightPrimeIndex - 1];
+    };
+
+
+    /**
+     * States whether the current cache size is too big
+     */
+    Engine.prototype.isCacheTooBig = function () {
+        return (8 * this.cache.length / Math.pow(1024, 2)) > this.maxCacheSize;
     };
 
 

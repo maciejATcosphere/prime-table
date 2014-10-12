@@ -54,9 +54,7 @@ define(['underscore', 'exception'], function (_, exception) {
         // get rid of duplicates
         parsed = _.uniq(parsed);
 
-        // FIXME move to seperate function -> regres to default
         len = parsed.length;
-
         if (len < DEFAULT_LENGTH) {
             var min = parsed[len - 1] + 1,
                 max = parsed[len - 1] + DEFAULT_LENGTH - len + 1
