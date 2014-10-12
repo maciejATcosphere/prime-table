@@ -1,11 +1,20 @@
 
 define([], function () {
 
+    /**
+     * Generator function which returns KeyCode discrimination function.
+     */
+    var isKeyCodeFun = function (targetKeyCode) {
+        return function (keyCode) {
+            return parseInt(keyCode) === targetKeyCode;
+        }
+    };
+
     return {
-        isEnter: function (keyCode) { return parseInt(keyCode) === 13; },
-        isRight: function (keyCode) { return parseInt(keyCode) === 39; },
-        isLeft: function (keyCode) { return parseInt(keyCode) === 37; },
-        isUp: function (keyCode) { return parseInt(keyCode) === 38; },
-        isDown: function (keyCode) { return parseInt(keyCode) === 40; },
+        isEnter: isKeyCodeFun(13),
+        isRight: isKeyCodeFun(39),
+        isLeft: isKeyCodeFun(37),
+        isUp: isKeyCodeFun(38),
+        isDown: isKeyCodeFun(40),
     };
 });

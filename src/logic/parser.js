@@ -1,21 +1,20 @@
 
-define(['underscore'], function (_) {
-    var exports = {},
-        DEFAULT_LENGTH = 10,
-        MAX_LENGTH = 20,
-        rangePattern = new RegExp(/^(\d+)-(\d+)$/),
-        expandPattern = new RegExp(/^(\d+)\+$/),
-        inputPattern = new RegExp(/^\d+[\/\d\-]*(\d+|\+)$/);
+define(['underscore', 'exception'], function (_, exception) {
 
-
-    exports.parse = function (rawInput) {
-
-        var input = removeSpace(rawInput),
+    var parse = function (rawInput) {
+        var DEFAULT_LENGTH = 10,
+            MAX_LENGTH = 20,
+            rangePattern = new RegExp(/^(\d+)-(\d+)$/),
+            expandPattern = new RegExp(/^(\d+)\+$/),
+            inputPattern = new RegExp(/^\d+[\/\d\-]*(\d+|\+)$/),
+            input = removeSpace(rawInput),
             len,
+            start, stop,
             parsed = [];
 
+        // validation
         if (!inputPattern.test(input)) {
-            throw new InvalidInputException();
+            throw new exception.InvalidInputException();
         }
 
         input = input.split('/');
@@ -39,15 +38,18 @@ define(['underscore'], function (_) {
                 // range pattern
                 match = rangePattern.exec(token);
                 if (match) {
-                    return _.range(
-                        parseInt(match[1]) - 1,
-                        parseInt(match[2]));
+                    start = parseInt(match[1]);
+                    stop = parseInt(match[2]);
+                    if (start > stop) {
+                        throw new exception.InvalidInputException(
+                            'provided input contains invalid rule ' + token);
+                    }
+                    return _.range(start - 1, stop);
                 }
 
                 return parseInt(token) - 1;
             })
         ).sort();
-
 
         // get rid of duplicates
         parsed = _.uniq(parsed);
@@ -66,22 +68,9 @@ define(['underscore'], function (_) {
     };
 
 
-    // FIXME clean up exceptions
-    var InvalidInputException = function (message) {
-        this.name = "InvalidInputException";
-        this.message = message || (
-            "provided input contain forbidden characters");
-    }
-
-    InvalidInputException.prototype = new Error();
-    InvalidInputException.prototype.constructor = InvalidInputException;
-    exports.InvalidInputException = InvalidInputException;
-
-
     var removeSpace = function (token) {
         return token.replace(/\s+/g, '');
     };
 
-
-    return exports
+    return {parse: parse};
 });

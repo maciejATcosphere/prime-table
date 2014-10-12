@@ -17,31 +17,62 @@
         <script data-main="main" src="lib/require.min.js"></script>
     </head>
     <body>
-        <div class="clearfix">
-            <label class="left">Prime Indices Range
-                    <input id="app-input"
-                           placeholder="1/2/3-10"
-                           value="1/2/3-10" />
-            </label>
-        </div>
-        <p class="panel">
-            For example, to close your browser hit <kbd>Cmd</kbd> +
-            <kbd>Q</kbd>
-        </p>
-        <div class="prime-table-container">
-            <table id="app-output"></table>
-        </div>
-        <div id="app-down-arrow" class="arrow">
-            <i class="fi-arrow-down"><p></p></i>
-        </div>
-        <div id="app-up-arrow" class="arrow">
-            <i class="fi-arrow-up"><p></p></i>
-        </div>
-        <div id="app-left-arrow" class="arrow">
-            <i class="fi-arrow-left"><p></p></i>
-        </div>
-        <div id="app-right-arrow" class="arrow">
-            <i class="fi-arrow-right"><p></p></i>
+        <div class="container">
+            <div class="display">
+                <div class="panel clearfix">
+                    <div class="left">
+                        Select the range
+                        <input id="app-input"
+                               placeholder="1/2/3-10"
+                               value="1/2/3-10" />
+                    </div>
+                    <div class="left">
+                        press <kbd>Enter</kbd>
+                    </div>
+
+                    <div class="right">
+                        <a id="app-help-button" data-shown="true" class="tiny button radius">hide help</a>
+                    </div>
+                </div>
+
+                <div id="app-help" class="panel">
+                    Use the input component above to type you range patterns. The following patterns are acceptable:
+
+                    <ul>
+                        <li><kbd>1/3/20</kbd> &#8801; 1st, 3rd and 20th - 28th primes</li>
+                        <li><kbd>7-20</kbd> &#8801; 7th - 20th primes</li>
+                        <li><kbd>18+</kbd> &#8801; 18th - 37th primes</li>
+                        <li><kbd>1/3/14+</kbd> &#8801; 1st, 3rd and 14th - 33th primes</li>
+                        <li><kbd>1/3-7/14</kbd> &#8801; 1st, 3rd - 7th and 14th - 17th primes</li>
+                        <li><kbd>1/3-7/14+</kbd> &#8801; 1st, 3rd - 7th and 14th - 27th primes</li>
+                        <li><kbd>1/3-7/9-11/14</kbd> &#8801; 1st, 3rd - 7th and 9th - 11th and 14th primes</li>
+                    </ul>
+                    Use <kbd>Ctrl + Up</kbd>, <kbd>Ctrl + Left</kbd>
+                    <kbd>Ctrl + Down</kbd> and <kbd>Ctrl + Right</kbd>
+                    to slide through consecutive primes and generate their multiplication
+                    table.
+                </div>
+
+                <div id="app-monitor-display" class="panel">
+                    For example, to close your browser hit <kbd>Cmd</kbd> +
+                    <kbd>Q</kbd>
+                </div>
+            </div>
+            <div class="prime-table-container">
+                <table id="app-output"></table>
+                <div id="app-down-arrow" class="arrow">
+                    <i class="fi-arrow-down"><p></p></i>
+                </div>
+                <div id="app-up-arrow" class="arrow">
+                    <i class="fi-arrow-up"><p></p></i>
+                </div>
+                <div id="app-left-arrow" class="arrow">
+                    <i class="fi-arrow-left"><p></p></i>
+                </div>
+                <div id="app-right-arrow" class="arrow">
+                    <i class="fi-arrow-right"><p></p></i>
+                </div>
+            </div>
         </div>
 
     </body>

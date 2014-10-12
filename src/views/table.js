@@ -2,9 +2,9 @@
 define(['jquery'], function ($) {
 
     var TableView = function (values, $el) {
-            this.$el = $el;
-            this.$el.html('');
-            this.domCache = this.initilize(values);
+        this.$el = $el;
+        this.$el.html('');
+        this.domCache = this.initilize(values);
     };
 
 

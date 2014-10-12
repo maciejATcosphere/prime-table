@@ -19,10 +19,12 @@ requirejs.config({
         'engine': 'logic/engine',
         'parser': 'logic/parser',
         'primes': 'logic/primes',
-        'layout': 'layout',
         'table': 'views/table',
-        'arrow': 'src/views/arrow',
+        'arrow': 'views/arrow',
+        'error': 'views/error',
         'keyboard': 'utils/keyboard',
+        'exception': 'exception',
+        'app': 'app',
     },
 
     shim: {

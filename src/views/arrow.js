@@ -2,7 +2,8 @@
 define([], function () {
 
     var FADE_TIME = 500,
-        OFFSET = 50;
+        OFFSET = 30;
+
 
     var ArrowView = function ($originEl) {
         this.$originEl = $originEl;
@@ -14,35 +15,46 @@ define([], function () {
     };
 
 
+    ArrowView.prototype.show = function (direction) {
+        var coordinates = this.$originEl.position(),
+            oTop = coordinates.top,
+            oLeft = coordinates.left;
+
+        if (direction === 'top-left') {
+            stop(this.$down);
+            stop(this.$right);
+            toggleFade(
+                stop(this.$up),
+                {top: oTop - OFFSET, left: oLeft});
+
+            toggleFade(
+                stop(this.$left),
+                {top: oTop, left: oLeft - OFFSET});
+        } else if (direction === 'bottom-right') {
+            stop(this.$up);
+            stop(this.$left);
+            toggleFade(
+                stop(this.$down),
+                {top: oTop - OFFSET, left: oLeft});
+
+            toggleFade(
+                stop(this.$right),
+                {top: oTop, left: oLeft - OFFSET});
+        }
+    };
+
+
     var toggleFade = function ($el, coordinates) {
-        $el.stop()
-           .fadeIn(FADE_TIME)
-           .fadeOut(FADE_TIME)
-           .css(coordinates);
+        $el.stop().fadeIn(FADE_TIME).fadeOut(FADE_TIME).css(coordinates);
+
+        return $el;
     };
 
 
     var stop = function ($el) {
         $el.stop().hide();
-    };
 
-
-    ArrowView.prototype.show = function (direction) {
-        var coordinates = this.$originEl.offset(),
-            originTop = coordinates.top,
-            originLeft = coordinates.left;
-
-        if (direction === 'top-left') {
-            stop(this.$down);
-            stop(this.$right);
-            toggleFade(this.$up, {top: originTop - OFFSET, left: originLeft});
-            toggleFade(this.$left, {top: originTop, left: originLeft - OFFSET});
-        } else if (direction === 'bottom-right') {
-            stop(this.$up);
-            stop(this.$left);
-            toggleFade(this.$down, {top: originTop - OFFSET, left: originLeft});
-            toggleFade(this.$right, {top: originTop, left: originLeft - OFFSET});
-        }
+        return $el;
     };
 
 

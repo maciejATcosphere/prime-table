@@ -16,6 +16,18 @@ td.active-cell {
     margin: 50px 0 0 50px;
 }
 
+.container {
+    margin: 20px 0 0 20px;
+}
+
+input {
+    width: 300px;
+    margin: 0 5px;
+}
+.button {
+    margin-bottom: 0px !important;
+}
+
 .arrow {
     width: 50px;
     height: 50px;
@@ -26,37 +38,33 @@ td.active-cell {
     position: absolute;
 }
 
+.alert-icon {
+    color: #f04124;
+    font-size: 24px;
+    padding: 0 2px;
+}
 
+.warning-icon {
+    color: #f08a24;
+    font-size: 24px;
+    padding: 0 2px;
+}
+
+.normal-icon {
+    color: #008cba;
+    font-size: 24px;
+    padding: 0 2px;
+}
+.display {
+    width: 800px;
+}
 table {border-spacing: 0; }
 
-/*This is not important*/
-body{
-    font-family:Arial, Helvetica, sans-serif;
+body {
     background-color: #272822 !important;
-    margin:0 auto;
-    width:520px;
-}
-a:link {
-    color: #666;
-    font-weight: bold;
-    text-decoration:none;
-}
-a:visited {
-    color: #666;
-    font-weight:bold;
-    text-decoration:none;
-}
-a:active,
-a:hover {
-    color: #bd5a35;
-    text-decoration:underline;
 }
 
-
-/*
-Table Style - This is what you want
------------------------------------------------------------------- */
-table a:link {
+/*table a:link {
     color: #666;
     font-weight: bold;
     text-decoration:none;
@@ -70,7 +78,7 @@ table a:active,
 table a:hover {
     color: #bd5a35;
     text-decoration:underline;
-}
+}*/
 table {
     font-family:Arial, Helvetica, sans-serif;
     color:#666;

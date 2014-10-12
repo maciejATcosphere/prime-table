@@ -12,7 +12,9 @@ requirejs.config({
         'keyboard': 'src/utils/keyboard',
         'table': 'src/views/table',
         'arrow': 'src/views/arrow',
-        'layout': 'src/layout',
+        'error': 'src/views/error',
+        'exception': 'src/exception',
+        'app': 'src/app',
     },
 
     shim: {
@@ -25,5 +27,5 @@ requirejs.config({
         },
     },
 
-    deps: ['layout'],
+    deps: ['app'],
 });

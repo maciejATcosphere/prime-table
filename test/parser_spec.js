@@ -1,5 +1,9 @@
 
-define(['underscore', 'parser'], function (_, parser) {
+define([
+    'underscore',
+    'parser',
+    'exception'
+], function (_, parser, exception) {
 
     describe('parser', function () {
 
@@ -75,10 +79,17 @@ define(['underscore', 'parser'], function (_, parser) {
                 {
                     input: '20/30/aa',
                     expected: {
-                        exception: parser.InvalidInputException,
-                        msg: "provided input contain forbidden characters",
+                        exception: exception.InvalidInputException,
+                        msg: "provided input contains forbidden characters",
                     },
                 },
+                {
+                    input: '20/30-20',
+                    expected: {
+                        exception: exception.InvalidInputException,
+                        msg: "provided input contains invalid rule 30-20",
+                    },
+                }
             ];
 
             testCases.forEach(function (testCase) {
