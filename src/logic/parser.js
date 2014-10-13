@@ -49,7 +49,7 @@ define(['underscore', 'exception'], function (_, exception) {
 
                 return parseInt(token) - 1;
             })
-        ).sort();
+        ).sort(function (a, b) { return a > b ? 1: -1; });
 
         // get rid of duplicates
         parsed = _.uniq(parsed);

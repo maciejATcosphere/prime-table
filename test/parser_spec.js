@@ -12,6 +12,7 @@ define([
             var testCases = [
                 {input: '20', expected: _.range(19, 29)},
                 {input: '20/30', expected: [19].concat(_.range(29, 38))},
+                {input: '1/3/15', expected: [0, 2].concat(_.range(14, 22))},
                 {input: '30/20', expected: [19].concat(_.range(29, 38))},
                 {
                     input: '20/30/41',
